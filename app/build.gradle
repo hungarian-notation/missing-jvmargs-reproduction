@@ -1,0 +1,38 @@
+plugins {
+    id 'application'
+    id 'org.beryx.jlink' version '4.0.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(26)
+    }
+}
+
+application {
+    mainClass = 'org.example.App'    
+    applicationDefaultJvmArgs += [
+        "--sun-misc-unsafe-memory-access=deny"
+    ]
+}
+
+jlink {
+    launcher{
+        name = 'example'
+        jvmArgs = [
+            "--sun-misc-unsafe-memory-access=deny"
+        ]
+    }
+}
+
+jpackage {
+    imageOptions = ['--win-console'] 
+}
